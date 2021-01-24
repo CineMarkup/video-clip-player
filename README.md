@@ -1,20 +1,9 @@
-## Video Annotation Editor and player
+# Video Annotation Editor and player
 
 Video clip editor in html5 on MEAN stack
 
 ## How to use
-
 Add a main video URL, then start adding clips
-
-## Save
-
-Data is saved in Local Storage
-
-## Hotkeys
-
-ctrl+shift+right: play to next clip
-
-ctrl+shift+left: play to previous clip
 
 ## Install
 
@@ -32,7 +21,34 @@ Install angular cli command-line interface tool
 npm install -g @angular/cli
 ```
 
+## Run 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
+
+![run](screenshots/Screenshot%20from%202021-01-24%2009-49-25.png)
+
+## Save
+Data is saved in Local Storage
+
+## Hotkeys
+- ctrl+shift+right: play to next clip
+- ctrl+shift+left: play to previous clip
+
+## Screenshots
+
+Making a clip
+![make1](screenshots/Screenshot%20from%202021-01-24%2009-45-49.png =150x150)
+
+![make2](screenshots/Screenshot%20from%202021-01-24%2009-47-13.png) <!-- .element height="50%" width="50%" -->
+
+Clip added succesfully notification 
+![addedclip](screenshots/Screenshot%20from%202021-01-24%2009-47-24.png){:height="50%" width="50%"}
+
+List of clips
+![list](screenshots/Screenshot%20from%202021-01-24%2009-46-19.png)
+
+Edit a Clip
+![editclip](screenshots/Screenshot%20from%202021-01-24%2009-48-55.png)
+
 
 ## References 
 
@@ -57,16 +73,25 @@ Task commands
 
 ## Debugging 
 
-**Issue 1**
+**Issue 1** node-sass missing 
 ```shell script
 Error: Cannot find module 'node-sass'
 ```
-**solution**
+**solution** It can be downloaded as local package
 ```shell script
 sudo npm install --save-dev  --unsafe-perm node-sass
 ```
-
-**Issue2**
+\
+**Issue 2** Sass incompatiable version
+```shell script
+Error: Node Sass version 5.0.0 is incompatible with ^4.0.0.
+```
+**solution** Ensure the node-sass version is in version 4
+```shell script
+npm install node-sass@4.14.1
+```
+\
+**Issue 3**
 ```shell script
 strip-ansi): Error: ENOSPC: System limit for number of file watchers reached,
 ```
@@ -74,28 +99,18 @@ strip-ansi): Error: ENOSPC: System limit for number of file watchers reached,
 ```shell script
 npm ci
 ```
-
-**issue3** Sass incompatiable version
-```shell script
-Error: Node Sass version 5.0.0 is incompatible with ^4.0.0.
-```
-**solution** Ensure the node-sass version is in version 4 
-```shell script
-npm install node-sass@4.14.1
-```
-
+\
 **Issue 4** Mousetrap instance
 ```shell script
 ERROR in node_modules/angular2-hotkeys/lib/hotkey.model.d.ts(24,9): error TS1086: An accessor cannot be declared in an ambient context.
 node_modules/angular2-hotkeys/lib/hotkeys.service.d.ts(9,16): error TS2304: Cannot find name 'MousetrapInstance'.
 ```
-
 **solution** update angular cli
 ```shell script
 ng update --next @angular/cli --force
 ```
-
-**Issue 5** 
+\
+**Issue 5** Invalid config in angular.json
 ```shell script
  Invalid config found at /home/altanai/Angular/video-clip-player-master/angular.json. CLI should be an object.
 ```
@@ -115,22 +130,20 @@ to update angular cli
 ```shell script
 ng update @angular/cli --migrate-only --from=1.7.4
 ```
-
+\
 **Issue 6** unhandled exception with ` contains both .browserslistrc and browserslist`
-
 **solution** Delete .browserslistrc
 
+\
 **Issue 7** ENOSPC: System limit for number of file watchers reached | Ubuntu 
 ```shell script
 ENOSPC: System limit for number of file watchers reached 
 ```
-
-**solution**To increase the file watchers limit
+**solution** To increase the file watchers limit
 ```shell script
 cat /proc/sys/fs/inotify/max_user_watches
 ```
 You might get output like this some integer. `8192`
-
 Now increase the limit by entering the next command
 ```shell script
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
@@ -140,18 +153,17 @@ The above command will set your file watcher limit to 524288. To see whether it 
 sudo sysctl -p
 ```
 output `fs.inotify.max_user_watches = 524288`
-
 ref : https://bestafiko.medium.com/npm-npm-start-error-enospc-system-limit-for-number-of-file-watchers-reached-bdc0eab0a159'
 
+\
 **Issue 8**  Cannot find name 'Promise'
 ```shell script
 TS2583: Cannot find name 'Promise'. Do you need to change your target library? Try changing the `lib` compiler option to es2015 or later.
 ```
-or
+or 
 ```
  Expected 1 arguments, but got 0. Did you forget to include 'void' in your type argument to 'Promise'?
 ```
-
 **solution** change your target to es6 inside tsconfig.json
 ```
   "compilerOptions": {
@@ -160,13 +172,9 @@ or
     "target": "es6"
   },
 ```
-
 and 
 ```shell script
 npm install @types/node --save-dev
 ```
 
-**Issue 9**
-```shell script
-Cannot find name 'console'. Do you need to change your target library? Try changing the `lib` compiler option to include 'dom'
-```
+---
